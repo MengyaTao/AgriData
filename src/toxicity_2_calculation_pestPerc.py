@@ -25,8 +25,6 @@ def human_health_impact_cal (mainFile, pestFile):
                     j = j+1
                 pestDF.loc[i, 'AICODE2'] = newCodeList
 
-    print pestDF
-    raw_input()
     # attach yield to pest df for each farmer
     for i in range(0, rowCount):
         try:
@@ -38,21 +36,25 @@ def human_health_impact_cal (mainFile, pestFile):
     pestDF['ai1_unit'] = pestDF['AIAMT1_kg_sum'].div(pestDF['yield']) # kg-pest/kg-yield
     pestDF['ai2_unit'] = pestDF['AIAMT2_kg_sum'].div(pestDF['yield'])
 
+    # columns to keep in pestDF
+    colsPest = ['STATE', 'COUNTY', 'POID', 'AICODE1', 'AICODE2', 'ai1_unit', 'ai2_unit']
+    pestDF = pestDF[colsPest]
+
     # import USETox data
     useToxDF = pd.read_excel('USEtox_all_v2.xlsx', converters={'PCCode1': str, 'PCCode2': str, 'PCCode3': str})
     # append the CF values into pestGroup
     toxCols = ['eco_mid', 'eco_end', 'hhc_mid', 'hhc_end', 'hhnc_mid', 'hhnc_end']
-
     df_group_zero = function.getUSEtoxValue_withMissingAssignment(pestDF, useToxDF, toxCols, 'AICODE1', 'zero')
-    df_group_zero = function.getUSEtoxValue_withMissingAssignment(pestDF, useToxDF, toxCols, 'AICODE2', 'zero')
+    df_group_zero = function.getUSEtoxValue_withMissingAssignment(df_group_zero, useToxDF, toxCols, 'AICODE2', 'zero')
+    df_group_secondQ = function.getUSEtoxValue_withMissingAssignment(pestDF, useToxDF, toxCols, 'AICODE1', 'secondQ')
+    df_group_secondQ = function.getUSEtoxValue_withMissingAssignment(df_group_secondQ, useToxDF, toxCols, 'AICODE2', 'secondQ')
+    df_group_thirdQ = function.getUSEtoxValue_withMissingAssignment(pestDF, useToxDF, toxCols, 'AICODE1', 'thirdQ')
+    df_group_thirdQ = function.getUSEtoxValue_withMissingAssignment(df_group_thirdQ, useToxDF, toxCols, 'AICODE2', 'thirdQ')
+    df_group_max = function.getUSEtoxValue_withMissingAssignment(pestDF, useToxDF, toxCols, 'AICODE1', 'max')
+    df_group_max = function.getUSEtoxValue_withMissingAssignment(df_group_max, useToxDF, toxCols, 'AICODE2', 'max')
+
     print df_group_zero
     raw_input()
-    df_group_secondQ = function.getUSEtoxValue_secondQuantileToMissing(pestDF, useToxDF, toxCols, 'AICODE1')
-    df_group_secondQ = function.getUSEtoxValue_secondQuantileToMissing(pestDF, useToxDF, toxCols, 'AICODE2')
-    df_group_thirdQ = function.getUSEtoxValue_thirdQuantileToMissing(pestDF, useToxDF, toxCols, 'AICODE1')
-    df_group_thirdQ = function.getUSEtoxValue_thirdQuantileToMissing(pestDF, useToxDF, toxCols, 'AICODE2')
-    df_group_max = function.getUSEtoxValue_maxToMissing(pestDF, useToxDF, toxCols, 'AICODE1')
-    df_group_max = function.getUSEtoxValue_maxToMissing(pestDF, useToxDF, toxCols, 'AICODE2')
 
     # multiply each impact for each ai at the farmer level and sum to product level
     multiplyColLists = [['eco_mid_AICODE1', 'eco_end_AICODE1', 'hhc_mid_AICODE1', 'hhc_end_AICODE1', 'hhnc_mid_AICODE1',

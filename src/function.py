@@ -135,36 +135,32 @@ def getUSEtoxValue(df, df_useTox, colNameList, aiColName):
 
 def getUSEtoxValue_withMissingAssignment(df, df_useTox, colNameList, aiColName, assignment):
     rowCount = df.shape[0]
+    df_new = df.copy()
     for col in colNameList:
         dfColName = col + '_' + aiColName
-        df[dfColName] = np.nan
+        df_new[dfColName] = np.nan
         for i in range(rowCount):
-            # chemCode = df[aiColName][i]
-            chemCode = df.loc[i, aiColName]
+            chemCode = df_new.loc[i, aiColName]
             # check if a value is in the column
             if chemCode in df_useTox['PCCode1'].values:
-                print 'PCCode1'
-                df.loc[i, dfColName] = df_useTox.loc[df_useTox['PCCode1'] == chemCode, col].iloc[0]
+                df_new.loc[i, dfColName] = df_useTox.loc[df_useTox['PCCode1'] == chemCode, col].iloc[0]
             elif chemCode in df_useTox['PCCode2'].values:
-                print 'PCCode2'
-                df.loc[i, dfColName] = df_useTox.loc[df_useTox['PCCode2'] == chemCode, col].iloc[0]
+                df_new.loc[i, dfColName] = df_useTox.loc[df_useTox['PCCode2'] == chemCode, col].iloc[0]
             elif chemCode in df_useTox['PCCode3'].values:
-                print 'PCCode3'
-                df.loc[i, dfColName] = df_useTox.loc[df_useTox['PCCode3'] == chemCode, col].iloc[0]
-            elif pd.isnull(chemCode):
-                df.loc[i, dfColName] = 0.0
-                print 'null'
-            else:
-                print 'assign'
+                df_new.loc[i, dfColName] = df_useTox.loc[df_useTox['PCCode3'] == chemCode, col].iloc[0]
+            elif len(chemCode) == 0:
+                df_new.loc[i, dfColName] = 0.0
+
+            if pd.isnull(df_new.loc[i, dfColName]):
                 if assignment == 'zero':
-                    df.loc[i, dfColName] = 0.0
+                    df_new.loc[i, dfColName] = 0.0
                 elif assignment == 'max':
-                    df.loc[i, dfColName] = max(df_useTox[col].values)
+                    df_new.loc[i, dfColName] = max(df_useTox[col].values)
                 elif assignment == 'secondQ':
-                    df.loc[i, dfColName] = df_useTox[col].quantile(0.25)
+                    df_new.loc[i, dfColName] = df_useTox[col].quantile(0.25)
                 elif assignment == 'thirdQ':
-                    df.loc[i, dfColName] = df_useTox[col].quantile(0.75)
-    return df
+                    df_new.loc[i, dfColName] = df_useTox[col].quantile(0.75)
+    return df_new
 
 
 def getUSEtoxValue_zeroToMissing(df, df_useTox, colNameList, aiColName):
