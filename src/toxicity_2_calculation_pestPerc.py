@@ -33,11 +33,11 @@ def human_health_impact_cal (mainFile, pestFile):
             pass
 
     # calculate pest use per unit yield for each farmer
-    pestDF['ai1_unit'] = pestDF['AIAMT1_kg_sum'].div(pestDF['yield']) # kg-pest/kg-yield
-    pestDF['ai2_unit'] = pestDF['AIAMT2_kg_sum'].div(pestDF['yield'])
+    pestDF['ai1'] = pestDF['AIAMT1_kg_sum'].div(pestDF['yield']) # unit level, kg-pest/kg-yield
+    pestDF['ai2'] = pestDF['AIAMT2_kg_sum'].div(pestDF['yield'])
 
     # columns to keep in pestDF
-    colsPest = ['STATE', 'COUNTY', 'POID', 'AICODE1', 'AICODE2', 'ai1_unit', 'ai2_unit']
+    colsPest = ['STATE', 'COUNTY', 'POID', 'AICODE1', 'AICODE2', 'ai1', 'ai2']
     pestDF = pestDF[colsPest]
 
     # import USETox data
@@ -53,9 +53,6 @@ def human_health_impact_cal (mainFile, pestFile):
     df_group_max = function.getUSEtoxValue_withMissingAssignment(pestDF, useToxDF, toxCols, 'AICODE1', 'max')
     df_group_max = function.getUSEtoxValue_withMissingAssignment(df_group_max, useToxDF, toxCols, 'AICODE2', 'max')
 
-    print df_group_zero
-    raw_input()
-
     # multiply each impact for each ai at the farmer level and sum to product level
     multiplyColLists = [['eco_mid_AICODE1', 'eco_end_AICODE1', 'hhc_mid_AICODE1', 'hhc_end_AICODE1', 'hhnc_mid_AICODE1',
                          'hhnc_end_AICODE1'],
@@ -67,9 +64,6 @@ def human_health_impact_cal (mainFile, pestFile):
     df_group_thirdQ_mul = function.multiplyCols(df_group_thirdQ, aiColList, multiplyColLists)
     df_group_max_mul = function.multiplyCols(df_group_max, aiColList, multiplyColLists)
 
-    print df_group_zero_mul[:5]
-    print df_group_max_mul[:5]
-    raw_input()
 
     # sum them together
     colNameList = ['eco_mid', 'eco_end', 'hhc_mid', 'hhc_end', 'hhnc_mid', 'hhnc_end']
