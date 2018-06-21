@@ -1,6 +1,9 @@
 import pandas as pd
 import numpy as np
 import function
+import os
+
+CUR_PATH = os.path.dirname(os.path.abspath(__file__))
 
 def pest_file_sum (inputFile):
     df = pd.read_csv(inputFile, converters={'STATE': str, 'COUNTY': str, 'CROPCODE': str,

@@ -11,7 +11,22 @@ def human_health_impact_cal (mainFile, pestFile):
     mainDF = pd.read_csv(mainFile, dtype={'STATE': str, 'COUNTY': str, 'POID': str})
     pestDF['yield'] = np.nan
     rowCount = pestDF.shape[0]
+    for i in range(0, rowCount):
+        if len(pestDF.loc[i, 'AICODE2']) == 0:
+            pass
+        else:
+            codeList = pestDF.loc[i, 'AICODE2']
+            newCodeList = ""
+            length = len(codeList)
+            if '.' in codeList:
+                j = 0
+                while j <= length-1 and codeList[j]!= '.':
+                    newCodeList = newCodeList+codeList[j]
+                    j = j+1
+                pestDF.loc[i, 'AICODE2'] = newCodeList
 
+    print pestDF
+    raw_input()
     # attach yield to pest df for each farmer
     for i in range(0, rowCount):
         try:
@@ -28,8 +43,8 @@ def human_health_impact_cal (mainFile, pestFile):
     # append the CF values into pestGroup
     toxCols = ['eco_mid', 'eco_end', 'hhc_mid', 'hhc_end', 'hhnc_mid', 'hhnc_end']
 
-    df_group_zero = function.getUSEtoxValue_zeroToMissing(pestDF, useToxDF, toxCols, 'AICODE1')
-    df_group_zero = function.getUSEtoxValue_zeroToMissing(pestDF, useToxDF, toxCols, 'AICODE2')
+    df_group_zero = function.getUSEtoxValue_withMissingAssignment(pestDF, useToxDF, toxCols, 'AICODE1', 'zero')
+    df_group_zero = function.getUSEtoxValue_withMissingAssignment(pestDF, useToxDF, toxCols, 'AICODE2', 'zero')
     print df_group_zero
     raw_input()
     df_group_secondQ = function.getUSEtoxValue_secondQuantileToMissing(pestDF, useToxDF, toxCols, 'AICODE1')

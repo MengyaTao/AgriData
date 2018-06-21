@@ -141,16 +141,21 @@ def getUSEtoxValue_withMissingAssignment(df, df_useTox, colNameList, aiColName, 
         for i in range(rowCount):
             # chemCode = df[aiColName][i]
             chemCode = df.loc[i, aiColName]
-            if pd.isnull(df.loc[i, dfColName]):
-                df.loc[i, dfColName] = 0.0
             # check if a value is in the column
             if chemCode in df_useTox['PCCode1'].values:
+                print 'PCCode1'
                 df.loc[i, dfColName] = df_useTox.loc[df_useTox['PCCode1'] == chemCode, col].iloc[0]
             elif chemCode in df_useTox['PCCode2'].values:
+                print 'PCCode2'
                 df.loc[i, dfColName] = df_useTox.loc[df_useTox['PCCode2'] == chemCode, col].iloc[0]
             elif chemCode in df_useTox['PCCode3'].values:
+                print 'PCCode3'
                 df.loc[i, dfColName] = df_useTox.loc[df_useTox['PCCode3'] == chemCode, col].iloc[0]
+            elif pd.isnull(chemCode):
+                df.loc[i, dfColName] = 0.0
+                print 'null'
             else:
+                print 'assign'
                 if assignment == 'zero':
                     df.loc[i, dfColName] = 0.0
                 elif assignment == 'max':
