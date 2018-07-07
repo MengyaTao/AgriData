@@ -5,42 +5,60 @@ import os
 
 CUR_PATH = os.path.dirname(os.path.abspath(__file__))
 
-def pest_file_sum (inputFile):
-    df = pd.read_csv(inputFile, converters={'STATE': str, 'COUNTY': str, 'CROPCODE': str,
-                                            'POID': str, 'AICODE1': str, 'AICODE2': str})
+def pest_file_sum (inputFile, aiNum):
+    # aiNum is to define how many active ingredients would be included, mostly 2-3
+    dtypeDict = {'STATE': str,
+                 'COUNTY': str,
+                 'CROPCODE': str,
+                 'POID': str,}
+    for num in range(0, aiNum):
+        keyText = 'AICODE' + str(num + 1)
+        dtypeDict[keyText] = str
+
+    df = pd.read_csv(inputFile, dtype=dtypeDict)
+    print 'Original dataset shape: ', df.shape
+
     rowCount = df.shape[0]
     # unit converstion to kg from pounds
-    df['AIAMT1_kg'] = np.nan
-    df['AIAMT2_kg'] = np.nan
-    for i in range(0, rowCount):
-        df.ix[i, 'AIAMT1_kg'] = df.ix[i, 'AIAMT1'] * 0.453592
-        df.ix[i, 'AIAMT2_kg'] = df.ix[i, 'AIAMT2'] * 0.453592
+    for num in range(0, aiNum):
+        keyText_raw = 'AIAMT' + str(num + 1)
+        keyText_new = keyText_raw + '_kg'
+        df[keyText_new] = np.nan
+        for i in range(0, rowCount):
+            df.ix[i, keyText_new] = df.ix[i, keyText_raw] * 0.453592
+        # drop the original amount col
+        df = df.drop([keyText_raw], axis=1)
+
+    print 'Finish converting pest amount from pound to kg.'
 
     # group data by state-county-farmer 3 columns combination, sum each pest use at the farmers level
-    df_group = df.groupby(['STATE', 'COUNTY', 'POID', 'AICODE1']).sum()
-    print df_group
+    gourpbyList = ['STATE', 'COUNTY', 'POID']
+    for num in range(0, aiNum):
+        gourpbyList.append('AICODE' + str(num + 1))
+
+    print 'The gourpbyList is: ', gourpbyList
+    df_group = df.groupby(gourpbyList).sum()
+
     # reset the index
     df_group = df_group.add_suffix('_sum').reset_index()
-    # create an empty column for aicode2 and yield
-    df_group['AICODE2'] = ''
-    # get aicode2 amount value column back
-    df_group = function.getValueBasedOnAnotherCol(df, df_group, 'AICODE1', 'AICODE2', 'AIAMT2_kg_sum')
-    print df_group
-    df_group.to_csv('pestFile_summed.csv', index=False)
 
-# pest_file_sum ('pestFile_processed.csv')
+    print 'Finish summing the pest use of each kind for each farmer.'
+    # create an empty column for yield
+    df_group.to_csv('../data/output/pestFile_summed.csv', index=False)
+
+pest_file_sum ('../data/output/pestFile_processed.csv', aiNum=2)
 
 
 
-if __name__ == '__main__':
-    prompt = '>'
-    entry = raw_input("This tool is used to calculate the pesticide data. \n"
-                      "Please enter the 1) input file name"
-                      "[e.g., pestFile_processed.csv] \n"
-                      )
-    inputFile = entry.split(' ')[0]
+# if __name__ == '__main__':
+#     prompt = '>'
+#     entry = raw_input("This tool is used to calculate the pesticide data. \n"
+#                       "Please enter the 1) input file name"
+#                       "[e.g., pestFile_processed.csv] \n"
+#                       )
+#     inputFile = entry.split(' ')[0]
+#
+#     pest_file_sum(inputFile)
 
-    pest_file_sum(inputFile)
-
-    print "Done!"
-    k = raw_input("Press close to exit")
+    # print "Done!"
+    # k = raw_input("Press close to exit")

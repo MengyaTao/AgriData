@@ -49,7 +49,7 @@ def main_file_process (inputFile, cols_to_keep, cornCode):
 
     # only select the rows that have the cornCode
     df = df.loc[df['CROPCODE'] == cornCode]
-    df.to_csv('mainFile_processed.csv', index=False)
+    df.to_csv('../data/output/mainFile_processed.csv', index=False)
     return df
 
 #

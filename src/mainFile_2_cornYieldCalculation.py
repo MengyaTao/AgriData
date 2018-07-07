@@ -62,11 +62,11 @@ def main_yield_calculation(inputFile):
 
     # remove YIELD_1 column
     df = df.drop(['YIELD_1'], axis=1)
-    df.to_csv('mainFile_yield.csv', index=False)
+    df.to_csv('../data/output/mainFile_yield.csv', index=False)
 
     return df
 
-main_yield_calculation('../data/mainFile_processed.csv')
+main_yield_calculation('../data/output/mainFile_processed.csv')
 
 # if __name__ == '__main__':
 #     prompt = '>'
