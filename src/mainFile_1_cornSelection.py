@@ -17,7 +17,6 @@ STATE, COUNTY, POID, CROPCODE, BHARVACR, BYIELD, BYLDUNIT
 '''
 
 # step 1 - yield data
-
 def main_file_process (inputFile, cols_to_keep, cornCode):
     # read the data in the right format
     if '.csv' in inputFile:

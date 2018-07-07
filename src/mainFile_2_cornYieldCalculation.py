@@ -19,20 +19,29 @@ Yield = BHARVACR * BYIELD
 def main_yield_calculation(inputFile):
     df = pd.read_csv(inputFile, dtype={'STATE': str, 'COUNTY': str, 'CROPCODE':str,
                                        'POID': str, 'BYLDUNIT': str})
+    print 'Original dataset shape: ', df.shape
+
     # drop the rows without either BHARVACR, BYIELD, or BYLDUNIT
     df.dropna(subset=['BHARVACR'], inplace=True)
     df.dropna(subset=['BYIELD'], inplace=True)
     df.dropna(subset=['BYLDUNIT'], inplace=True)
+
+    print 'After removing empty cells: ', df.shape
+
     # drop the rows with BYLDUNIT = 0 or -1
     df = df[df.BYLDUNIT != '0']
     df = df[df.BYLDUNIT != '0.0']
     df = df[df.BYLDUNIT != '-1']
     df = df[df.BYLDUNIT != '-1.0']
-    df = df.reset_index(drop=True)
+
+    print 'After dropping wrong units: ', df.shape
+
+    df = df.reset_index(drop=True) # restart from 0
+
     # multiplication
     df['YIELD_1'] = df['BHARVACR'].mul(df['BYIELD'])
     rowCount = df.shape[0]
-    print rowCount
+
     # unit converstion to kg
     df['YIELD_2'] = np.nan
 
@@ -49,20 +58,25 @@ def main_yield_calculation(inputFile):
         elif df.at[i,'BYLDUNIT'] == '4' or df.at[i,'BYLDUNIT'] == '4.0': # bushels
             df.at[i,'YIELD_2'] = df.at[i,'YIELD_1'] * 25.40
 
+    print 'Finishing yield calculation with converted units to kg under col YIELD_2.'
+
+    # remove YIELD_1 column
+    df = df.drop(['YIELD_1'], axis=1)
     df.to_csv('mainFile_yield.csv', index=False)
+
     return df
 
-# main_yield_calculation('mainFile_processed.csv')
+main_yield_calculation('../data/mainFile_processed.csv')
 
-if __name__ == '__main__':
-    prompt = '>'
-    entry = raw_input("This tool is used to calculate the yield data. \n"
-                      "Please enter the 1) input file name \n"
-                      "[e.g., mainFile_processed.csv] \n"
-                      )
-    inputFile = entry.split(' ')[0]
-
-    main_yield_calculation(inputFile)
-
-    print "Done!"
-    k = raw_input("Press close to exit")
+# if __name__ == '__main__':
+#     prompt = '>'
+#     entry = raw_input("This tool is used to calculate the yield data. \n"
+#                       "Please enter the 1) input file name \n"
+#                       "[e.g., mainFile_processed.csv] \n"
+#                       )
+#     inputFile = entry.split(' ')[0]
+#
+#     main_yield_calculation(inputFile)
+#
+#     print "Done!"
+#     k = raw_input("Press close to exit")
