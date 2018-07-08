@@ -3,7 +3,7 @@ import numpy as np
 
 # use this when the data is cleaned
 def pivotTableGenerator(mainFile, pestFile, uniqueIdCol, pestCol, valueCol):
-    pestDF = pd.read_csv(pestFile, converters={'STATE': str, 'COUNTY': str, 'POID': str,
+    pestDF = pd.read_csv(pestFile, dtype={'STATE': str, 'COUNTY': str, 'POID': str,
                                                'AICODE1': str, 'AICODE2': str})
     mainDF = pd.read_csv(mainFile, dtype={'STATE': str, 'COUNTY': str, 'POID': str})
     pestDF['yield'] = np.nan

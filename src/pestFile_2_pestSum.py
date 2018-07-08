@@ -5,16 +5,20 @@ import os
 
 CUR_PATH = os.path.dirname(os.path.abspath(__file__))
 
-def pest_file_sum (inputFile, aiNum):
-    # aiNum is to define how many active ingredients would be included, mostly 2-3
+def dType_creation(aiNum):
     dtypeDict = {'STATE': str,
                  'COUNTY': str,
                  'CROPCODE': str,
-                 'POID': str,}
+                 'POID': str, }
     for num in range(0, aiNum):
         keyText = 'AICODE' + str(num + 1)
         dtypeDict[keyText] = str
+    return dtypeDict
 
+
+def pest_file_sum (inputFile, aiNum):
+    # aiNum is to define how many active ingredients would be included, mostly 2-3
+    dtypeDict = dType_creation(aiNum)
     df = pd.read_csv(inputFile, dtype=dtypeDict)
     print 'Original dataset shape: ', df.shape
 
@@ -47,6 +51,7 @@ def pest_file_sum (inputFile, aiNum):
     df_group.to_csv('../data/output/pestFile_summed.csv', index=False)
 
 pest_file_sum ('../data/output/pestFile_processed.csv', aiNum=2)
+
 
 
 
