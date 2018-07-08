@@ -1,1 +1,4 @@
 1. USEtox inorganic VP highlighted chemicals = 0, metals don't normally evaporize
+2. USEtox human health and ecological CFs
+3. TODO: find Hazard Qotient for each active ingredients (7/8)
+4. TODO: build a simple model structure to feed in the data (7/8)
