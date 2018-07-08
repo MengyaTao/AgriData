@@ -2,18 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="298ce021-1289-4f81-aa37-076c0c384283" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/pestFile_3_unitPestCalculation.py" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/USEtox_all_v2.xlsx" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/pestFile_summed.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/toxicityImpact_perPest0_perc.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/toxicityImpact_perPest_max.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/toxicityImpact_perPest_secondQ.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/toxicityImpact_perPest_thirdQ.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/toxicityImpact_perPest_zero.csv" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/pestFile_3_pivotTable.py" afterPath="$PROJECT_DIR$/src/pestFile_pivotTable.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/pestFile_4_purePivotTable.py" afterPath="$PROJECT_DIR$/src/pestFile_purePivotTable.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pestFile_2_pestSum.py" afterPath="$PROJECT_DIR$/src/pestFile_2_pestSum.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/output/pestFile_unit.csv" afterPath="$PROJECT_DIR$/data/output/pestFile_unit.csv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/function.py" afterPath="$PROJECT_DIR$/src/function.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pestFile_3_unitPestCalculation.py" afterPath="$PROJECT_DIR$/src/pestFile_3_unitPestCalculation.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/toxicity_1_calculation_farmLevel.py" afterPath="$PROJECT_DIR$/src/toxicity_1_calculation_farmLevel.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -31,18 +24,8 @@
       <file leaf-file-name="toxicity_2_calculation_pestPerc.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/toxicity_2_calculation_pestPerc.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
+            <state relative-caret-position="-1180">
               <caret line="39" column="76" lean-forward="false" selection-start-line="39" selection-start-column="76" selection-end-line="39" selection-end-column="76" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="function.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/function.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2340">
-              <caret line="156" column="41" lean-forward="false" selection-start-line="156" selection-start-column="41" selection-end-line="156" selection-end-column="41" />
               <folding>
                 <element signature="e#42#61#0" expanded="true" />
               </folding>
@@ -50,13 +33,25 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pestFile_3_unitPestCalculation.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/pestFile_3_unitPestCalculation.py">
+      <file leaf-file-name="function.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/function.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="19" column="94" lean-forward="true" selection-start-line="19" selection-start-column="94" selection-end-line="19" selection-end-column="94" />
+            <state relative-caret-position="152">
+              <caret line="236" column="40" lean-forward="false" selection-start-line="236" selection-start-column="40" selection-end-line="236" selection-end-column="40" />
               <folding>
-                <element signature="e#0#19#0" expanded="true" />
+                <element signature="e#42#61#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="toxicity_1_calculation_farmLevel.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/toxicity_1_calculation_farmLevel.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="315">
+              <caret line="124" column="74" lean-forward="false" selection-start-line="124" selection-start-column="74" selection-end-line="124" selection-end-column="74" />
+              <folding>
+                <element signature="e#42#61#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -75,9 +70,11 @@
     <findStrings>
       <find>getYieldFromMain2</find>
       <find>sales</find>
-      <find>multiplyCols</find>
-      <find>getUSEtoxValue_zeroToMissing</find>
       <find>df</find>
+      <find>getUSEtoxValue_zeroToMissing</find>
+      <find>eco_mid_AICODE1_ai1</find>
+      <find>multiplyCols</find>
+      <find>sumCols</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -95,7 +92,6 @@
         <option value="$PROJECT_DIR$/pestFile_summed.csv" />
         <option value="$PROJECT_DIR$/toxicity_2_calculation_pestPerc.py" />
         <option value="$PROJECT_DIR$/function.py" />
-        <option value="$PROJECT_DIR$/src/function.py" />
         <option value="$PROJECT_DIR$/src/toxicity_2_calculation_pestPerc.py" />
         <option value="$PROJECT_DIR$/src/mainFile_2_cornYieldCalculation.py" />
         <option value="$PROJECT_DIR$/src/mainFile_1_cornSelection.py" />
@@ -103,6 +99,9 @@
         <option value="$PROJECT_DIR$/src/pestFile_3_pivotTable.py" />
         <option value="$PROJECT_DIR$/src/pestFile_2_pestSum.py" />
         <option value="$PROJECT_DIR$/src/pestFile_3_unitPestCalculation.py" />
+        <option value="$PROJECT_DIR$/data/output/pestFile_unit.csv" />
+        <option value="$PROJECT_DIR$/src/function.py" />
+        <option value="$PROJECT_DIR$/src/toxicity_1_calculation_farmLevel.py" />
       </list>
     </option>
   </component>
@@ -181,6 +180,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="output" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AgriData" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AgriData" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="data" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="input" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -364,7 +381,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="aghist_v7" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/pestFile_3_unitPestCalculation.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/toxicity_1_calculation_farmLevel.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
@@ -405,9 +422,9 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32739726" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33424658" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2446386" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2025417" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Project Explorer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Job Explorer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -431,8 +448,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/toxicity_2_calculation_pestPerc.py" />
-    <entry file="file://$PROJECT_DIR$/pestFile_3_pivotTable.py" />
     <entry file="file://$PROJECT_DIR$/toxicity_1_calculation_farmLevel.py" />
     <entry file="file://$PROJECT_DIR$/toxicity_2_calculation_pestPerc.py" />
     <entry file="file://$PROJECT_DIR$/toxicity_1_calculation_farmLevel.py" />
@@ -498,14 +513,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data/output/pestFile_summed.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/pestFile_pivotTable.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
@@ -526,37 +533,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data/output/mainFile_yield.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/data/output/pestFile_processed.csv">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
           <caret line="2" column="27" lean-forward="false" selection-start-line="2" selection-start-column="27" selection-end-line="2" selection-end-column="27" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/toxicity_2_calculation_pestPerc.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="39" column="76" lean-forward="false" selection-start-line="39" selection-start-column="76" selection-end-line="39" selection-end-column="76" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/toxicity_1_calculation_farmLevel.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="43" lean-forward="false" selection-start-line="16" selection-start-column="43" selection-end-line="16" selection-end-column="43" />
-          <folding>
-            <element signature="e#42#61#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -566,16 +547,6 @@
           <caret line="21" column="46" lean-forward="true" selection-start-line="21" selection-start-column="10" selection-end-line="21" selection-end-column="46" />
           <folding>
             <element signature="e#43#62#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/function.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2340">
-          <caret line="156" column="41" lean-forward="false" selection-start-line="156" selection-start-column="41" selection-end-line="156" selection-end-column="41" />
-          <folding>
-            <element signature="e#42#61#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -590,12 +561,74 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/data/output/pestFile_summed.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/output/mainFile_yield.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/pestFile_3_unitPestCalculation.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="19" column="94" lean-forward="true" selection-start-line="19" selection-start-column="94" selection-end-line="19" selection-end-column="94" />
+        <state relative-caret-position="197">
+          <caret line="19" column="43" lean-forward="false" selection-start-line="19" selection-start-column="43" selection-end-line="19" selection-end-column="43" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/output/pestFile_unit.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="40" lean-forward="false" selection-start-line="3" selection-start-column="40" selection-end-line="3" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/output/df_group_zero_sum.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/toxicity_2_calculation_pestPerc.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1180">
+          <caret line="39" column="76" lean-forward="false" selection-start-line="39" selection-start-column="76" selection-end-line="39" selection-end-column="76" />
+          <folding>
+            <element signature="e#42#61#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/function.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="236" column="40" lean-forward="false" selection-start-line="236" selection-start-column="40" selection-end-line="236" selection-end-column="40" />
+          <folding>
+            <element signature="e#42#61#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/toxicity_1_calculation_farmLevel.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="124" column="74" lean-forward="false" selection-start-line="124" selection-start-column="74" selection-end-line="124" selection-end-column="74" />
+          <folding>
+            <element signature="e#42#61#0" expanded="true" />
           </folding>
         </state>
       </provider>

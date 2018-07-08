@@ -17,7 +17,7 @@ def unit_pest_cal (pestFile, yieldFile, aiNum):
     # attach yield to pest df for each farmer
     for i in range(0, rowCount):
         try:
-            pestDF['yield'][i] = mainDF.at[mainDF['uniqID'] == pestDF['uniqID'][i], 'YIELD_2']
+            pestDF['yield'][i] = mainDF.loc[mainDF['uniqID'] == pestDF['uniqID'][i], 'YIELD_2']
         except:
             pass
 
@@ -29,6 +29,7 @@ def unit_pest_cal (pestFile, yieldFile, aiNum):
         unitText = 'ai' + str(i + 1)
         pestDF[unitText] = pestDF[sumText].div(pestDF['yield'])
 
+    print pestDF
     # remove unnecessary cols
     pestDF = pestDF.drop(['AIAMT1_kg_sum', 'AIAMT2_kg_sum', 'yield'], axis=1)
     print 'Finish calculating the unit pest use data.'

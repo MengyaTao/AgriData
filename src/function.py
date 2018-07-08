@@ -163,109 +163,47 @@ def getUSEtoxValue_withMissingAssignment(df, df_useTox, colNameList, aiColName, 
     return df_new
 
 
-def getUSEtoxValue_zeroToMissing(df, df_useTox, colNameList, aiColName):
+def getValue(df_useTox_col, assignedCriteria):
+    if assignedCriteria == 'zero':
+        value = 0.0
+    elif assignedCriteria == 'max':
+        value = np.nanmax(df_useTox_col.values)
+    elif assignedCriteria == 'secondQ':
+        value = np.nanpercentile(df_useTox_col, 50)
+    elif assignedCriteria == 'thirdQ':
+        value = np.nanpercentile(df_useTox_col, 70)
+    elif assignedCriteria == 'avg':
+        value = np.nanmean(df_useTox_col.values)
+    elif assignedCriteria == 'min':
+        value = np.nanmin(df_useTox_col.values)
+
+    return value
+
+
+def getUSEtoxValue(df, df_useTox, colNameList, aiColName, assignedCriteria):
+    # colNameList is toxCols
     rowCount = df.shape[0]
     for col in colNameList:
         dfColName = col + '_' + aiColName
         df[dfColName] = np.nan
         for i in range(rowCount):
-            # chemCode = df[aiColName][i]
-            chemCode = df.loc[i, aiColName]
-            if pd.isnull(df.loc[i, dfColName]):
-                df.loc[i, dfColName] = 0.0
-            # check if a value is in the column
-            if chemCode in df_useTox['PCCode1'].values:
-                df.loc[i, dfColName] = df_useTox.loc[df_useTox['PCCode1'] == chemCode, col].iloc[0]
-            elif chemCode in df_useTox['PCCode2'].values:
-                df.loc[i, dfColName] = df_useTox.loc[df_useTox['PCCode2'] == chemCode, col].iloc[0]
-            elif chemCode in df_useTox['PCCode3'].values:
-                df.loc[i, dfColName] = df_useTox.loc[df_useTox['PCCode3'] == chemCode, col].iloc[0]
-            else:
-                df.loc[i, dfColName] = 0.0
+            value = getValue(df_useTox[col], assignedCriteria)
+            chemCode = str(df.loc[i, aiColName])
 
-    return df
+            if chemCode != 'nan':
+                # check if a value is in the column
+                if chemCode in df_useTox['PCCode1'].values:
+                    df.loc[i, dfColName] = df_useTox.loc[df_useTox['PCCode1'] == chemCode, col].iloc[0]
+                elif chemCode in df_useTox['PCCode2'].values:
+                    df.loc[i, dfColName] = df_useTox.loc[df_useTox['PCCode2'] == chemCode, col].iloc[0]
+                elif chemCode in df_useTox['PCCode3'].values:
+                    df.loc[i, dfColName] = df_useTox.loc[df_useTox['PCCode3'] == chemCode, col].iloc[0]
+                else:
+                    df.loc[i, dfColName] = value
 
-def getUSEtoxValue_maxToMissing(df, df_useTox, colNameList, aiColName):
-    rowCount = df.shape[0]
-    for col in colNameList:
-        dfColName = col + '_' + aiColName
-        df[dfColName] = np.nan
-        for i in range(rowCount):
-            chemCode = df[aiColName][i]
-            # check if a value is in the column
-            if chemCode in df_useTox['PCCode1'].values:
-                df[dfColName][i] = df_useTox.loc[df_useTox['PCCode1'] == chemCode, col]
-            elif chemCode in df_useTox['PCCode2'].values:
-                df[dfColName][i] = df_useTox.loc[df_useTox['PCCode2'] == chemCode, col]
-            elif chemCode in df_useTox['PCCode3'].values:
-                df[dfColName][i] = df_useTox.loc[df_useTox['PCCode3'] == chemCode, col]
-            else:
-                df[dfColName][i] = max(df_useTox[col].values)
-            if pd.isnull(df[dfColName][i]):
-                df[dfColName][i] = max(df_useTox[col].values)
-    return df
-
-
-def getUSEtoxValue_secondQuantileToMissing(df, df_useTox, colNameList, aiColName):
-    rowCount = df.shape[0]
-    for col in colNameList:
-        dfColName = col + '_' + aiColName
-        df[dfColName] = np.nan
-        for i in range(rowCount):
-            chemCode = df[aiColName][i]
-            # check if a value is in the column
-            if chemCode in df_useTox['PCCode1'].values:
-                df[dfColName][i] = df_useTox.loc[df_useTox['PCCode1'] == chemCode, col]
-            elif chemCode in df_useTox['PCCode2'].values:
-                df[dfColName][i] = df_useTox.loc[df_useTox['PCCode2'] == chemCode, col]
-            elif chemCode in df_useTox['PCCode3'].values:
-                df[dfColName][i] = df_useTox.loc[df_useTox['PCCode3'] == chemCode, col]
-            else:
-                df[dfColName][i] = df_useTox[col].quantile(0.25)
-            if pd.isnull(df[dfColName][i]):
-                df[dfColName][i] = df_useTox[col].quantile(0.25)
-    return df
-
-
-def getUSEtoxValue_thirdQuantileToMissing(df, df_useTox, colNameList, aiColName):
-    rowCount = df.shape[0]
-    for col in colNameList:
-        dfColName = col + '_' + aiColName
-        df[dfColName] = np.nan
-        for i in range(rowCount):
-            chemCode = df[aiColName][i]
-            # check if a value is in the column
-            if chemCode in df_useTox['PCCode1'].values:
-                df[dfColName][i] = df_useTox.loc[df_useTox['PCCode1'] == chemCode, col]
-            elif chemCode in df_useTox['PCCode2'].values:
-                df[dfColName][i] = df_useTox.loc[df_useTox['PCCode2'] == chemCode, col]
-            elif chemCode in df_useTox['PCCode3'].values:
-                df[dfColName][i] = df_useTox.loc[df_useTox['PCCode3'] == chemCode, col]
-            else:
-                df[dfColName][i] = df_useTox[col].quantile(0.75)
-            if pd.isnull(df[dfColName][i]):
-                df[dfColName][i] = df_useTox[col].quantile(0.75)
-    return df
-
-
-def getUSEtoxValue_avgToMissing(df, df_useTox, colNameList, aiColName):
-    rowCount = df.shape[0]
-    for col in colNameList:
-        dfColName = col + '_' + aiColName
-        df[dfColName] = np.nan
-        for i in range(rowCount):
-            chemCode = df[aiColName][i]
-            # check if a value is in the column
-            if chemCode in df_useTox['PCCode1'].values:
-                df[dfColName][i] = df_useTox.loc[df_useTox['PCCode1'] == chemCode, col]
-            elif chemCode in df_useTox['PCCode2'].values:
-                df[dfColName][i] = df_useTox.loc[df_useTox['PCCode2'] == chemCode, col]
-            elif chemCode in df_useTox['PCCode3'].values:
-                df[dfColName][i] = df_useTox.loc[df_useTox['PCCode3'] == chemCode, col]
-            else:
-                df[dfColName][i] = df_useTox[col].quantile(0.5)
-            if pd.isnull(df[dfColName][i]):
-                df[dfColName][i] = df_useTox[col].quantile(0.5)
+                # this need to put in the last order so that all NA would be convert to 0s
+                if pd.isnull(df.loc[i, dfColName]):
+                    df.loc[i, dfColName] = value
     return df
 
 
@@ -288,18 +226,16 @@ def divideColsPerc(df, colList, sumColList):
     return df
 
 
-def sumCols(df, sumColLists, colNameList):
+def sumCols(df, sumColLists, toxCols):
     colCount = len(sumColLists[0])
     sumColCount = len(sumColLists)
     rowCount = df.shape[0]
     for i in range(colCount):
-        df[colNameList[i]] = 0.0
+        df[toxCols[i]] = 0.0
         for j in range(rowCount):
             # for cell with NAN, use 0 for summation
             for m in range(sumColCount):
-                if pd.isnull(df[sumColLists[m][i]][j]):
-                    df[sumColLists[m][i]][j] = 0.0
-                df[colNameList[i]][j] = df[sumColLists[m][i]][j] + df[colNameList[i]][j]
+                df.loc[j, toxCols[i]] = df.loc[j, sumColLists[m][i]] + df.loc[j, toxCols[i]]
     # delete the sumColList1 and sumColList2
     for m in range(sumColCount):
         df = df.drop(sumColLists[m], axis=1)
